@@ -14,39 +14,39 @@ import java.util.List;
 public class MovieController {
 
     // Declare the service as final to ensure its immutability
-    private final MovieServiceImpl movieServiceImpl;
+    private final MovieServiceImpl movieService;
 
     // Use constructor-based dependency injection
     @Autowired
-    public MovieController(MovieServiceImpl movieServiceImpl) {
-        this.movieServiceImpl = movieServiceImpl;
+    public MovieController(MovieServiceImpl movieService) {
+        this.movieService = movieService;
     }
 
     @GetMapping
     public ResponseEntity<List<Movie>> getAllMovies() {
-        return ResponseEntity.ok(movieServiceImpl.getAllMovies());
+        return ResponseEntity.ok(movieService.getAllMovies());
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Movie> getMovieById(@PathVariable String id) {
-        return movieServiceImpl.getMovieById(id)
+        return movieService.getMovieById(id)
                 .map(entity -> ResponseEntity.ok(entity))
                 .orElse(ResponseEntity.notFound().build());
     }
 
     @PostMapping
     public ResponseEntity<Movie> createMovie(@RequestBody Movie movie) {
-        return ResponseEntity.ok(movieServiceImpl.saveMovie(movie));
+        return ResponseEntity.ok(movieService.saveMovie(movie));
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<Movie> updateMovie(@PathVariable String id, @RequestBody Movie movie) {
-        return ResponseEntity.ok(movieServiceImpl.saveMovie(movie));
+        return ResponseEntity.ok(movieService.saveMovie(movie));
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteMovie(@PathVariable String id) {
-        movieServiceImpl.deleteMovie(id);
+        movieService.deleteMovie(id);
         return ResponseEntity.noContent().build();
     }
 }

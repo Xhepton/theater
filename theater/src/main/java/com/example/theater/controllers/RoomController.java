@@ -13,39 +13,39 @@ import java.util.List;
 public class RoomController {
 
     // Declare the service as final to ensure its immutability
-    private final RoomServiceImpl roomServiceImpl;
+    private final RoomServiceImpl roomService;
 
     // Use constructor-based dependency injection
     @Autowired
-    public RoomController(RoomServiceImpl roomServiceImpl) {
-        this.roomServiceImpl = roomServiceImpl;
+    public RoomController(RoomServiceImpl roomService) {
+        this.roomService = roomService;
     }
 
     @GetMapping
     public ResponseEntity<List<Room>> getAllRooms() {
-        return ResponseEntity.ok(roomServiceImpl.getAllRooms());
+        return ResponseEntity.ok(roomService.getAllRooms());
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Room> getRoomById(@PathVariable String id) {
-        return roomServiceImpl.getRoomById(id)
+        return roomService.getRoomById(id)
                 .map(entity -> ResponseEntity.ok(entity))
                 .orElse(ResponseEntity.notFound().build());
     }
 
     @PostMapping
     public ResponseEntity<Room> createRoom(@RequestBody Room room) {
-        return ResponseEntity.ok(roomServiceImpl.saveRoom(room));
+        return ResponseEntity.ok(roomService.saveRoom(room));
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<Room> updateRoom(@PathVariable String id, @RequestBody Room room) {
-        return ResponseEntity.ok(roomServiceImpl.saveRoom(room));
+        return ResponseEntity.ok(roomService.saveRoom(room));
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteRoom(@PathVariable String id) {
-        roomServiceImpl.deleteRoom(id);
+        roomService.deleteRoom(id);
         return ResponseEntity.noContent().build();
     }
 }
