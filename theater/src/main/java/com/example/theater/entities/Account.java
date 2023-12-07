@@ -3,10 +3,14 @@ package com.example.theater.entities;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
 import java.util.Date;
 import java.util.Objects;
 
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 public class Account {
 
@@ -17,17 +21,6 @@ public class Account {
     private String address;
     private String email;
     private Date birth;
-
-    public Account() {
-    }
-
-    public Account(Long id, String name, String address, String email, Date birth) {
-        this.id = id;
-        this.name = name;
-        this.address = address;
-        this.email = email;
-        this.birth = birth;
-    }
 
     public Long getId() {
         return id;
