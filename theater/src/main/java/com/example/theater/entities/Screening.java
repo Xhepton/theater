@@ -1,4 +1,4 @@
-package com.example.theater.model;
+package com.example.theater.entities;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
