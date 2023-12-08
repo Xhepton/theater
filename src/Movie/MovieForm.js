@@ -4,6 +4,7 @@ import {tokenstate} from "../Auth/AuthForm";
 
 const MovieForm = () => {
     const [movies, setMovies] = useState([]);
+    const [error, setError] = useState(null);
     const [newMovie, setNewMovie] = useState({
         title: '',
         genre: '',
@@ -45,8 +46,10 @@ const MovieForm = () => {
                 genre: '',
                 runtime: 0,
             });
+            setError(null)
         } catch (error) {
             console.error('Error saving movie:', error);
+            setError('You dont have permission to save movies!')
         }
     };
 
@@ -85,6 +88,7 @@ const MovieForm = () => {
                 <br />
                 <button type="submit">Save Movie</button>
             </form>
+            {error && <p>{error}</p>}
 
             <ul>
                 {movies.map((movie) => (
