@@ -4,6 +4,7 @@ import './index.css'
 import AuthForm from "./AuthForm";
 import MovieForm from "./MovieForm";
 import RoomForm from "./RoomForm";
+import ScreeningForm from "./ScreeningForm";
 
 const inputs = [{
   name: "username",
@@ -33,6 +34,7 @@ ReactDOM.render(
       <AuthForm />
       <MovieForm />
       <RoomForm />
+        <ScreeningForm />
     </React.StrictMode>,
     document.getElementById('root')
 );
