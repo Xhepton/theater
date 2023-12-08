@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 
+export let tokenstate = null;
 const AuthForm = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [isSignUp, setIsSignUp] = useState(false);
     const [error, setError] = useState(null);
+    const [token, setToken] = useState(null);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -16,7 +18,6 @@ const AuthForm = () => {
         };
 
         try {
-            // Send the authentication request to your server
             const endpoint = isSignUp
                 ? 'http://localhost:9090/api/v1/auth/signup'
                 : 'http://localhost:9090/api/v1/auth/signin';
@@ -33,8 +34,18 @@ const AuthForm = () => {
             if (response.ok) {
                 // Reset error state on success
                 setError(null);
+
+                // Extract the token from the response
+                const data = await response.json();
+                const authToken = data.token;
+
+                // Store the token in a variable or state
+                setToken(authToken);
+                tokenstate = authToken;
+
                 // Handle successful authentication (e.g., display success message)
                 console.log(isSignUp ? 'Sign-up successful!' : 'Sign-in successful!');
+                console.log('Token:', authToken);
             } else if (response.status === 403) {
                 // Handle 403 error (invalid credentials)
                 setError('Invalid credentials');
@@ -51,6 +62,8 @@ const AuthForm = () => {
         setIsSignUp((prevIsSignUp) => !prevIsSignUp);
         // Reset error state when toggling forms
         setError(null);
+        // Reset token on form toggle
+        setToken(null);
     };
 
     return (
@@ -83,6 +96,8 @@ const AuthForm = () => {
             <button onClick={toggleForm}>
                 {isSignUp ? 'Sign In Instead' : 'Sign Up Instead'}
             </button>
+
+            {token && <p>Token: {token}</p>}
         </div>
     );
 };

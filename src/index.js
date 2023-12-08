@@ -5,6 +5,7 @@ import Form from './Form'
 import SignInForm from "./SigninForm";
 import SignupForm from "./SignupForm";
 import AuthForm from "./AuthForm";
+import MovieForm from "./MovieForm";
 
 const inputs = [{
   name: "username",
@@ -32,6 +33,7 @@ const params = new URLSearchParams(window.location.search)
 ReactDOM.render(
     <React.StrictMode>
       <AuthForm />
+      <MovieForm />
     </React.StrictMode>,
     document.getElementById('root')
 );
