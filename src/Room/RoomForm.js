@@ -1,7 +1,6 @@
-// RoomForm.js
 import React, { useState, useEffect } from 'react';
 import RoomService from './RoomService';
-import { tokenstate } from './AuthForm';
+import { tokenstate } from '../Auth/AuthForm';
 
 const RoomForm = () => {
     const [rooms, setRooms] = useState([]);
@@ -63,7 +62,7 @@ const RoomForm = () => {
                     Name:
                     <input
                         type="text"
-                        name="roomName"  // Change to "roomName"
+                        name="roomName"
                         value={newRoom.roomName}
                         onChange={handleInputChange}
                     />
@@ -73,7 +72,7 @@ const RoomForm = () => {
                     Seats Per Column:
                     <input
                         type="number"
-                        name="colCount"  // Change to "colCount"
+                        name="colCount"
                         value={newRoom.colCount}
                         onChange={handleInputChange}
                     />
@@ -83,7 +82,7 @@ const RoomForm = () => {
                     Seats Per Row:
                     <input
                         type="number"
-                        name="rowCount"  // Change to "rowCount"
+                        name="rowCount"
                         value={newRoom.rowCount}
                         onChange={handleInputChange}
                     />

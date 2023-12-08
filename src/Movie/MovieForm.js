@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import AuthForm from './AuthForm'; // Import your authentication hook
-import MovieService from './MovieService'; // Import your MovieService
-import {tokenstate} from "./AuthForm";
+import MovieService from './MovieService';
+import {tokenstate} from "../Auth/AuthForm";
 
 const MovieForm = () => {
     const [movies, setMovies] = useState([]);

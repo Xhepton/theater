@@ -1,12 +1,11 @@
-// ScreeningForm.js
 import React, { useState, useEffect } from 'react';
-import ScreeningService from './ScreeningService'; // Import your ScreeningService
-import { tokenstate } from "./AuthForm";
+import ScreeningService from './ScreeningService';
+import { tokenstate } from "../Auth/AuthForm";
 
 const ScreeningForm = () => {
     const [screenings, setScreenings] = useState([]);
     const [newScreening, setNewScreening] = useState({
-        startTime: '2023-12-08T12:00:00Z', // Set your default start time
+        startTime: '2023-12-08T12:00:00Z', // Set default start time
         movieTitle: {
             title: ''
         },

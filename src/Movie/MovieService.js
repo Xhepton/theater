@@ -1,5 +1,3 @@
-// services/MovieService.js
-
 class MovieService {
     constructor(baseUrl) {
         this.baseUrl = baseUrl;
