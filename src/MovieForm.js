@@ -11,8 +11,6 @@ const MovieForm = () => {
         runtime: 0,
     });
 
-    const auth = AuthForm();
-    const { getToken } = AuthForm();
     const movieService = new MovieService('http://localhost:9090');
 
     useEffect(() => {

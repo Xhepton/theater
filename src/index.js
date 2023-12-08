@@ -1,11 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import './index.css'
-import Form from './Form'
-import SignInForm from "./SigninForm";
-import SignupForm from "./SignupForm";
 import AuthForm from "./AuthForm";
 import MovieForm from "./MovieForm";
+import RoomForm from "./RoomForm";
 
 const inputs = [{
   name: "username",
@@ -34,6 +32,7 @@ ReactDOM.render(
     <React.StrictMode>
       <AuthForm />
       <MovieForm />
+      <RoomForm />
     </React.StrictMode>,
     document.getElementById('root')
 );
