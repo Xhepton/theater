@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom'
 import './index.css'
 import Form from './Form'
 import SignInForm from "./SigninForm";
+import SignupForm from "./SignupForm";
+import AuthForm from "./AuthForm";
 
 const inputs = [{
   name: "username",
@@ -28,12 +30,8 @@ const props = {
 const params = new URLSearchParams(window.location.search)
 
 ReactDOM.render(
-  <Form {...props} error={params.get('error')} />,
-  document.getElementById('container'))
-
-ReactDOM.render(
     <React.StrictMode>
-      <SignInForm />
+      <AuthForm />
     </React.StrictMode>,
     document.getElementById('root')
 );

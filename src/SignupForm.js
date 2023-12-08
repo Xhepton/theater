@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 
-const SignInForm = () => {
+const SignupForm = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const handleSignIn = async (e) => {
+    const handleSignUp = async (e) => {
         e.preventDefault();
 
         // Prepare the request body
@@ -14,8 +14,8 @@ const SignInForm = () => {
         };
 
         try {
-            // Send the sign-in request to your server
-            const response = await fetch('http://localhost:9090/api/v1/auth/signin', {
+            // Send the sign-up request to your server
+            const response = await fetch('http://localhost:9090/api/v1/auth/signup', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -25,19 +25,19 @@ const SignInForm = () => {
 
             // Check if the request was successful (status code 2xx)
             if (response.ok) {
-                // Handle successful sign-in (e.g., redirect to another page)
-                console.log('Sign-in successful!');
+                // Handle successful sign-up (e.g., display success message)
+                console.log('Sign-up successful!');
             } else {
-                // Handle sign-in error (e.g., display error message)
-                console.error('Sign-in failed');
+                // Handle sign-up error (e.g., display error message)
+                console.error('Sign-up failed');
             }
         } catch (error) {
-            console.error('Error during sign-in:', error);
+            console.error('Error during sign-up:', error);
         }
     };
 
     return (
-        <form onSubmit={handleSignIn}>
+        <form onSubmit={handleSignUp}>
             <label>
                 Email:
                 <input
@@ -56,8 +56,9 @@ const SignInForm = () => {
                 />
             </label>
             <br />
-            <button type="submit">Sign In</button>
+            <button type="submit">Sign Up</button>
         </form>
     );
 };
-export default SignInForm;
+
+export default SignupForm;
