@@ -2,9 +2,10 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import './index.css'
 import AuthForm from "./Auth/AuthForm";
-import MovieForm from "./Movie/MovieForm";
-import RoomForm from "./Room/RoomForm";
-import ScreeningForm from "./Screening/ScreeningForm";
+// import MovieForm from "./Movie/MovieForm";
+// import RoomForm from "./Room/RoomForm";
+// import ScreeningForm from "./Screening/ScreeningForm";
+import App from "./App";
 
 const inputs = [{
   name: "username",
@@ -31,10 +32,7 @@ const params = new URLSearchParams(window.location.search)
 
 ReactDOM.render(
     <React.StrictMode>
-      <AuthForm />
-      <MovieForm />
-        <RoomForm />
-        <ScreeningForm />
+      <App />
     </React.StrictMode>,
     document.getElementById('root')
 );

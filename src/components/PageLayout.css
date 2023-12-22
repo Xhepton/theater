@@ -1,0 +1,31 @@
+.pageLayoutHeader {
+    background-color: sienna;
+    padding: 0.4em;
+    margin: 0;
+    text-align: center;
+    color: white;
+    border-radius: 0em 0em 0.5em 0.5em;
+    font-size: x-large;
+}
+
+.pageLayoutBody {
+    background-color: burlywood;
+    margin: 1em;
+    padding: 1em 5% 1em 5%;
+    border-radius: 1em;
+    text-align: center;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    height: 3000px;
+}
+
+.pageLayout {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+button {
+    background-color: cornflowerblue;
+}
