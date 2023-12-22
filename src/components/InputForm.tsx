@@ -19,7 +19,7 @@ interface InputFormProps {
 }
 
 export function InputForm(props: React.PropsWithChildren<InputFormProps>) {
-    var data: { [key: string]: any } = {};
+    const data: { [key: string]: any } = {};
     return (
         <div className="input_form_label_body">
         <h1 className="input_form_title">{props.title}</h1>
@@ -38,8 +38,6 @@ export function InputForm(props: React.PropsWithChildren<InputFormProps>) {
 )
 }
 
-
-
 interface InputFormElementProps {
     title: string,
     inputType: string,
@@ -47,7 +45,7 @@ interface InputFormElementProps {
     id: string,
     initialValue?: any,
     dropDownElements?: MyDropdownButtonElementInterface[]
-};
+}
 
 function InputFormElement(props: React.PropsWithChildren<InputFormElementProps>) {
     const textAreaRef = useRef<HTMLTextAreaElement | null>(null);

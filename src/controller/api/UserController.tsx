@@ -7,6 +7,11 @@ export interface CreateUserDTO {
     password: string,
 }
 
+export interface SignInUserDTO {
+    email: string,
+    password: string,
+}
+
 export interface PatchUserDTO {
     firstName?: string,
     lastName?: string,
@@ -26,19 +31,13 @@ export interface GetUserDto {
 
 export class UserController {
 
-    // GET methods
-    static async getUserById(id: string): Promise<GetUserDto> {
-        return (await fetch(url + "/Users/" + id, getBody)).json()
+    static async signInUser(body: SignInUserDTO): Promise<GetUserDto> {
+        return await (await fetch(url + "/v1/auth/signin", {
+            ...postBody,
+            body: JSON.stringify(body)
+        })
+        ).json()
     }
-
-    static async getUserByEmail(email: string): Promise<GetUserDto> {
-        return (await fetch(url + "/Users/email/" + email, getBody)).json()
-    }
-
-    static async getAllUsers(): Promise<GetUserDto[]> {
-        return (await fetch(url + "/Users", getBody)).json()
-    }
-
 
     // POST methods
     static async createNewUser(body: CreateUserDTO): Promise<GetUserDto> {
@@ -47,23 +46,6 @@ export class UserController {
                 body: JSON.stringify(body)
             })
         ).json()
-    }
-
-    // PATCH methods
-    static async modifyUser(id: string, body: PatchUserDTO) {
-        return (await fetch(url + "/Users/" + id, {
-                ...patchBody,
-                body: JSON.stringify(body)
-            })
-        )
-    }
-
-    // DELETE methods
-    static async deleteUserById(id: string) {
-        return (await fetch(url + "/Users/" + id, {
-                ...deleteBody
-            })
-        )
     }
 
 }

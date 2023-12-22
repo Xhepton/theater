@@ -6,16 +6,16 @@ import { getCurrentUser, setCurrentUser } from "../controller/session/session";
 import React from "react";
 
 async function onSubmit(values: any, navigate: NavigateFunction) {
-    var data: any = await UserController.getUserByEmail(values.email)
     if (values.password == undefined || values.email == undefined) {
         alert("Please fill in every field")
         return
     }
+    var data: any = await UserController.signInUser(values)
     if (data.error != undefined) {
         alert(data.message)
         return
     }
-    if (data.password == values.password) {
+    if (data) {
         setCurrentUser(data)
         navigate("/movies")
         return
