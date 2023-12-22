@@ -1,0 +1,25 @@
+.dropdownBody {
+    background-color: gray;
+    list-style-type: none;
+    border-radius: 0.2em;
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+.dropdownBody button {
+    border: 0;
+    font-size: x-large;
+    border-radius: 0.25em;
+    margin: 0.2em;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.dropdownBody button:hover {
+    text-decoration: underline;
+    background-color: rgb(183, 183, 183);
+}
