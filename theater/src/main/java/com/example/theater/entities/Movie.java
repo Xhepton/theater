@@ -1,5 +1,6 @@
 package com.example.theater.entities;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -20,6 +21,7 @@ public class Movie {
     @Column(nullable = false)
     private Integer runtime;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "movieTitle")
     private Set<Screening> movieTitleScreenings;
 

@@ -1,5 +1,6 @@
 package com.example.theater.entities;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -22,10 +23,12 @@ public class Screening {
     @Column(nullable = false)
     private OffsetDateTime startTime;
 
+    @JsonManagedReference
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "movie_title_id", nullable = false)
     private Movie movieTitle;
 
+    @JsonManagedReference
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "room_room_name_id", nullable = false)
     private Room roomRoomName;
