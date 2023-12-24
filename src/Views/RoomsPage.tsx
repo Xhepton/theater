@@ -16,17 +16,34 @@ function onClick(navigate: NavigateFunction) {
     navigate("/createRoom")
 }
 
+// export function RoomsPage(props: RoomsPageInterface) {
+//     var navigate = useNavigate()
+//     return (
+//         <CustomerPageLayout>
+//             <h1>Termek</h1>
+//             <ItemList IDs={props.IDs.map((id) => id.toString())}
+//                       onClick={(id) => onItemClick(id, navigate)} />
+//             <br />
+//             <Button className="roomsButton" size="lg" onClick={() => onClick(navigate)}>
+//                 Új Terem Létrehozása
+//             </Button>
+//         </CustomerPageLayout>
+//     )
+// }
+
 export function RoomsPage(props: RoomsPageInterface) {
-    var navigate = useNavigate()
+    var navigate = useNavigate();
     return (
         <CustomerPageLayout>
             <h1>Termek</h1>
-            <ItemList IDs={props.IDs.map((id) => id.toString())}
-                      onClick={(id) => onItemClick(id, navigate)} />
+            <ItemList
+                IDs={props.IDs.filter((id) => id !== undefined).map((id) => id.toString())}
+                onClick={(id) => onItemClick(id, navigate)}
+            />
             <br />
             <Button className="roomsButton" size="lg" onClick={() => onClick(navigate)}>
                 Új Terem Létrehozása
             </Button>
         </CustomerPageLayout>
-    )
+    );
 }
