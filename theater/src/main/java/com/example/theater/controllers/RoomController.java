@@ -1,12 +1,16 @@
 package com.example.theater.controllers;
 
+import com.example.theater.entities.Movie;
 import com.example.theater.entities.Room;
 import com.example.theater.services.Impl.RoomServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/room")
@@ -21,9 +25,21 @@ public class RoomController {
         this.roomService = roomService;
     }
 
-    @GetMapping
-    public ResponseEntity<List<Room>> getAllRooms() {
-        return ResponseEntity.ok(roomService.getAllRooms());
+    @GetMapping("/all")
+    public ResponseEntity<List<Map<String, Object>>> getAllRooms() {
+        List<Room> allRooms = roomService.getAllRooms();
+
+        List<Map<String, Object>> roomInfoList = allRooms.stream()
+                .map(room -> {
+                    Map<String, Object> roomInfo = new HashMap<>();
+                    roomInfo.put("roomName", room.getRoomName());
+                    roomInfo.put("rowCount", room.getRowCount());
+                    roomInfo.put("colCount", room.getColCount());
+                    return roomInfo;
+                })
+                .collect(Collectors.toList());
+
+        return ResponseEntity.ok(roomInfoList);
     }
 
     @GetMapping("/{id}")
