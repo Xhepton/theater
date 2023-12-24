@@ -1,4 +1,4 @@
-import { deleteBody, getBody, patchBody, postBody, url } from "./constants"
+import {deleteBody, getBody, patchBody, postBody, postLoginBody, url} from "./constants"
 
 export interface CreateUserDTO {
     firstName: string,
@@ -37,7 +37,7 @@ export class UserController {
 
     static async signInUser(body: SignInUserDTO): Promise<{ user: GetUserDto, myToken: string }> {
         const response = await fetch(url + "/v1/auth/signin", {
-            ...postBody,
+            ...postLoginBody,
             body: JSON.stringify(body),
         });
 
@@ -53,7 +53,7 @@ export class UserController {
     // POST methods
     static async createNewUser(body: CreateUserDTO): Promise<GetUserDto> {
         return await (await fetch(url + "/v1/auth/signup", {
-                ...postBody,
+                ...postLoginBody,
                 body: JSON.stringify(body)
             })
         ).json()

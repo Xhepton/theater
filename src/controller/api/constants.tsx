@@ -15,10 +15,19 @@ export const patchBody = {
     method: 'PATCH',
     headers: {
         'content-type': 'application/json;charset=UTF-8',
+        'Authorization': `Bearer ${myToken}`
     }
 }
 
 export const postBody = {
+    method: 'POST',
+    headers: {
+        'content-type': 'application/json;charset=UTF-8',
+        'Authorization': `Bearer ${myToken}`
+    }
+}
+
+export const postLoginBody = {
     method: 'POST',
     headers: {
         'content-type': 'application/json;charset=UTF-8',
@@ -29,5 +38,6 @@ export const deleteBody = {
     method: 'DELETE',
     headers: {
         'content-type': 'application/json;charset=UTF-8',
+        'Authorization': `Bearer ${myToken}`
     }
 }

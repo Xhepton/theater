@@ -1,6 +1,7 @@
 import { Path } from "react-router-dom";
 import { patchBody, postBody, deleteBody, getBody, url } from "./constants"
 import {getCurrentUserToken} from "../session/session";
+import {homedir} from "os";
 
 
 export interface CreateMovieDTO {
@@ -31,6 +32,7 @@ export class MovieController {
 
     // PATCH methods
     static async modifyMovie(id: string, body: PatchMovieDTO) {
+        patchBody.headers.Authorization = `Bearer ${getCurrentUserToken()}`;
         return await (await fetch(url + "/movie/" + id, {
                 ...patchBody,
                 body: JSON.stringify(body)
@@ -40,15 +42,21 @@ export class MovieController {
 
     // POST methods
     static async createNewMovie(body: CreateMovieDTO) {
-        return await (await fetch(url + "/movie", {
+        console.log(body.runtime)
+        const { title, genre, runtime } = body;
+        postBody.headers.Authorization = `Bearer ${getCurrentUserToken()}`;
+        const response = await (await fetch(url + "/movie", {
                 ...postBody,
-                body: JSON.stringify(body)
+                body: JSON.stringify({ title, genre, runtime: Number(runtime) })
             })
         ).json()
+
+        return response
     }
 
     // DELETE methods
     static async deleteMovieById(id: string) {
+        deleteBody.headers.Authorization = `Bearer ${getCurrentUserToken()}`;
         return (await fetch(url + "/Movies/" + id, {
                 ...deleteBody
             })

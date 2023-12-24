@@ -4,7 +4,7 @@ import { InputForm } from "../components/InputForm";
 import { CreateMovieDTO, GetMovieDTO, MovieController } from "../controller/api/MovieController";
 import { positionDropdownItems, genreDropdownItems } from "../controller/enums";
 import { UserController } from "../controller/api/UserController";
-import React from "react";
+import React, {useState} from "react";
 interface NewMovieInterface {
     userID: number
 }
@@ -12,15 +12,28 @@ interface NewMovieInterface {
 interface MovieData {
     title: string,
     genre: string,
-    runtime: number
+    runtime: number,
 }
 
 async function onSubmit(data: MovieData, navigate: NavigateFunction) {
+    if (data.title === undefined) {
+        alert("Please fill in the title field")
+        return
+    } else if (data.genre === undefined) {
+        alert("Please fill in the genre field")
+        return
+    } else if (data.runtime === undefined) {
+        alert("Please fill in the runtime field")
+        return
+    }
+    console.log(data.runtime)
+
     var movie = await MovieController.createNewMovie({
         title: data.title,
         genre: data.genre,
         runtime: data.runtime
     })
+
     if (movie.error !== undefined) {
         alert(movie.message)
         return
@@ -42,14 +55,14 @@ export function NewMoviePage() {
                     },
                     {
                         title: "Film Műfaja",
-                        inputType: "dropdown",
+                        inputType: "text",
                         id: "genre",
-                        dropDownElements: genreDropdownItems
+                        // dropDownElements: genreDropdownItems
                     },
                     {
                         title: "Film Hossza Percben",
                         inputType: "number",
-                        id: "placeOfProblem",
+                        id: "runtime",
                     }
                 ]
             } onSubmit={(values) => onSubmit(values as MovieData, navigate)}>

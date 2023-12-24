@@ -27,8 +27,13 @@ export function InputForm(props: React.PropsWithChildren<InputFormProps>) {
         props.inputFormElements.map(
             function (value: InputFormDataProps) {
                 return (
-                    <InputFormElement initialValue={value.initalValue} id={value.id} onKeyDown={(val: any) => { data[value.id] = val }} inputType={value.inputType} title={value.title} dropDownElements={value.dropDownElements} />
-            )
+                    <InputFormElement initialValue={value.initalValue}
+                                      id={value.id}
+                                      onKeyDown={(val: any) => { data[value.id] = val }}
+                                      inputType={value.inputType}
+                                      title={value.title}
+                                      dropDownElements={value.dropDownElements} />
+                    )
             }
         )
     }
