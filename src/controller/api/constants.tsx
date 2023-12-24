@@ -11,8 +11,8 @@ export const getBody = {
         'Authorization': `Bearer ${myToken}`
     }
 }
-export const patchBody = {
-    method: 'PATCH',
+export const putBody = {
+    method: 'PUT',
     headers: {
         'content-type': 'application/json;charset=UTF-8',
         'Authorization': `Bearer ${myToken}`

@@ -15,7 +15,6 @@ interface MovieData {
 
 async function onChange(value: any, movieId: string) {
     await MovieController.modifyMovie(movieId, {
-        title: value.title,
         genre: value.genre,
         runtime: value.runtime
     })
@@ -30,7 +29,7 @@ export function MoviePage(props: MoviePageInterface) {
                     id: "title",
                     title: "Cím:  ",
                     inputType: "text",
-                    isChangable: true,
+                    isChangable: false,
                     value: props.movieData.title,
 
                 }, {

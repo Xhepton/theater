@@ -1,4 +1,4 @@
-import {deleteBody, getBody, patchBody, postBody, postLoginBody, url} from "./constants"
+import {deleteBody, getBody, putBody, postBody, postLoginBody, url} from "./constants"
 
 export interface CreateUserDTO {
     firstName: string,

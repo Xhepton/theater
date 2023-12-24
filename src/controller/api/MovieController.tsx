@@ -1,5 +1,5 @@
 import { Path } from "react-router-dom";
-import { patchBody, postBody, deleteBody, getBody, url } from "./constants"
+import { putBody, postBody, deleteBody, getBody, url } from "./constants"
 import {getCurrentUserToken} from "../session/session";
 import {homedir} from "os";
 
@@ -10,8 +10,7 @@ export interface CreateMovieDTO {
     runtime: number
 }
 
-export interface PatchMovieDTO {
-    title?: string,
+export interface PutMovieDTO {
     genre?: string,
     runtime?: number
 }
@@ -30,12 +29,13 @@ export class MovieController {
         return await (await fetch(url + "/movie/all", getBody)).json()
     }
 
-    // PATCH methods
-    static async modifyMovie(id: string, body: PatchMovieDTO) {
-        patchBody.headers.Authorization = `Bearer ${getCurrentUserToken()}`;
-        return await (await fetch(url + "/movie/" + id, {
-                ...patchBody,
-                body: JSON.stringify(body)
+    // PUT methods
+    static async modifyMovie(title: string, body: PutMovieDTO) {
+        const {genre, runtime } = body
+        putBody.headers.Authorization = `Bearer ${getCurrentUserToken()}`;
+        return await (await fetch(url + "/movie/" + title, {
+                ...putBody,
+                body: JSON.stringify({ title, genre, runtime: Number(runtime) })
             })
         ).json()
     }
@@ -43,8 +43,8 @@ export class MovieController {
     // POST methods
     static async createNewMovie(body: CreateMovieDTO) {
         console.log(body.runtime)
-        const { title, genre, runtime } = body;
-        postBody.headers.Authorization = `Bearer ${getCurrentUserToken()}`;
+        const { title, genre, runtime } = body
+        postBody.headers.Authorization = `Bearer ${getCurrentUserToken()}`
         const response = await (await fetch(url + "/movie", {
                 ...postBody,
                 body: JSON.stringify({ title, genre, runtime: Number(runtime) })
