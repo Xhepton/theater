@@ -6,6 +6,10 @@ import { getCurrentUser } from "../session/session";
 import { NewMoviePage } from "../../Views/NewMoviePage";
 import {useParams} from "react-router-dom";
 import {MoviePage} from "../../Views/MoviePage";
+import {GetRoomDTO, RoomController} from "../api/RoomController";
+import {RoomsPage} from "../../Views/RoomsPage";
+import {RoomPage} from "../../Views/RoomPage";
+import {NewRoomPage} from "../../Views/NewRoomPage";
 
 export function FetchMoviesForUser() {
     var [movies, updateMovies] = useState<GetMovieDTO[]>()
@@ -37,5 +41,38 @@ export function FetchMovieData() {
 export function CreateMovie() {
     return (
         <NewMoviePage />
+    )
+}
+
+export function FetchRoomsForUser() {
+    var [rooms, updateRooms] = useState<GetRoomDTO[]>()
+    var data = getCurrentUser()
+    if (rooms === undefined) {
+        RoomController.getAllRooms().then((value) => updateRooms(value))
+    }
+    return (rooms === undefined ? <WaitingPage /> :
+            <RoomsPage IDs={rooms.map((room) => room.roomName)} />
+    )
+}
+
+export function FetchRoomData() {
+    const { id } = useParams()
+    const [data, updateData] = React.useState<GetRoomDTO>()
+    if (data === undefined) {
+        RoomController.getRoomById(id ?? "").then((value) => updateData(value))
+    }
+    return data === undefined ? <WaitingPage /> :
+        <RoomPage roomData={
+            {
+                roomName: data.roomName,
+                rowCount: data.rowCount,
+                colCount: data.colCount,
+            }
+        } />
+}
+
+export function CreateRoom() {
+    return (
+        <NewRoomPage />
     )
 }
