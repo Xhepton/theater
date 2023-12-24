@@ -1,7 +1,5 @@
-import { Path } from "react-router-dom";
 import { putBody, postBody, deleteBody, getBody, url } from "./constants"
 import {getCurrentUserToken} from "../session/session";
-import {homedir} from "os";
 
 
 export interface CreateMovieDTO {
@@ -57,7 +55,7 @@ export class MovieController {
     // DELETE methods
     static async deleteMovieById(id: string) {
         deleteBody.headers.Authorization = `Bearer ${getCurrentUserToken()}`;
-        return (await fetch(url + "/Movies/" + id, {
+        return (await fetch(url + "/movie/" + id, {
                 ...deleteBody
             })
         )

@@ -11,6 +11,7 @@ import {
     FetchRoomData,
     FetchRoomsForUser
 } from "./controller/fetchers/Fetchers";
+import {UserPage} from "./Views/UserPage";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
             <Route path={"/rooms"} Component={FetchRoomsForUser} />
             <Route path={"/room/:id"} Component={FetchRoomData} />
             <Route path={"/createRoom/"} Component={CreateRoom} />
+            <Route path={"/user/"} Component={UserPage} />
         </Routes>
       </BrowserRouter>
   );

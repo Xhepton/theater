@@ -3,6 +3,8 @@ import { ObjectEditor } from "../components/ObjectEditor"
 import { MovieController } from "../controller/api/MovieController"
 import React from "react";
 import {RoomController} from "../controller/api/RoomController";
+import {Button} from "react-bootstrap";
+import {NavigateFunction, useNavigate} from "react-router-dom";
 
 interface RoomPageInterface {
     roomData: RoomData,
@@ -22,10 +24,16 @@ async function onChange(value: any, roomId: string) {
     window.location.reload();
 }
 
+async function onDelete(roomId: string, navigate: NavigateFunction) {
+    await RoomController.deleteRoomById(roomId)
+    navigate("/rooms")
+}
+
 export function RoomPage(props: RoomPageInterface) {
+    var navigate = useNavigate()
     return (
         <CustomerPageLayout>
-            <ObjectEditor title="Terem adatainak szerkesztése" onChange={(obj: any) => { onChange(obj, props.roomData.roomName); }} parameters={[
+            <ObjectEditor title="Terem adatainak szerkesztése" onChange={(obj: any) => { onChange(obj, props.roomData.roomName); }} onDelete={(value: any) => {onDelete(props.roomData.roomName, navigate)}} parameters={[
                 {
                     id: "roomName",
                     title: "Terem neve:  ",
@@ -49,6 +57,9 @@ export function RoomPage(props: RoomPageInterface) {
 
                 }
             ]} />
+            <Button className="ObjectDeleterButton" size="lg" onClick={() => onDelete(props.roomData.roomName, navigate)}>
+                Törlés
+            </Button>
         </CustomerPageLayout>
     )
 }

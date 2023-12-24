@@ -9,6 +9,7 @@ interface ObjectEditorInterface {
     title: string,
     parameters: ObjectEditorItemInterface[]
     onChange: (obj: any) => void
+    onDelete: (value: any) => void
 }
 
 interface ObjectEditorItemInterface {
@@ -21,6 +22,12 @@ interface ObjectEditorItemInterface {
     dropDownElements?: MyDropdownButtonElementInterface[]
 }
 
+function handleDelete() {
+    // Add your delete logic here
+    // You can use props.onDelete or any other method to handle the delete action
+    // For example: props.onDelete(props.itemId);
+}
+
 export function ObjectEditor(props: ObjectEditorInterface) {
     const [editing, setEditing] = useState(false)
     if (!editing) {
@@ -28,7 +35,7 @@ export function ObjectEditor(props: ObjectEditorInterface) {
             <>
                 <h1 className="ObjectEditorTitle">{props.title}</h1>
                 {props.parameters.map((value => {
-                    if (value.inputType == "textarea") {
+                    if (value.inputType === "textarea") {
                         return (
                             <div className="LargeObjectEditorItemBody">
                                 <p className="LargeObjectEditorLargeItemTitle">{value.title}</p>
@@ -45,14 +52,18 @@ export function ObjectEditor(props: ObjectEditorInterface) {
                         )
                     }
                 }))}
-                <Button className="ObjecEditorButton" size="lg" onClick={() => setEditing(true)}>Módosít</Button>
-
+                <Button className="ObjecEditorButton" size="lg" onClick={() => setEditing(true)}>
+                    Módosít
+                </Button>
             </>
         )
     }
     else {
         return (
-            <><InputForm submitButtonText="Módosít" title={props.title} onSubmit={props.onChange} inputFormElements={props.parameters.filter((parameter) => parameter.isChangable).map((parameter) => {
+
+            <>
+
+                <InputForm submitButtonText="Módosít" title={props.title} onSubmit={props.onChange} onDel={props.onDelete} inputFormElements={props.parameters.filter((parameter) => parameter.isChangable).map((parameter) => {
                 return {
                     title: parameter.title,
                     inputType: parameter.inputType,

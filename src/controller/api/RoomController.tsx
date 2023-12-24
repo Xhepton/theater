@@ -55,7 +55,7 @@ export class RoomController {
     // DELETE methods
     static async deleteRoomById(id: string) {
         deleteBody.headers.Authorization = `Bearer ${getCurrentUserToken()}`;
-        return (await fetch(url + "/Room/" + id, {
+        return (await fetch(url + "/room/" + id, {
                 ...deleteBody
             })
         )

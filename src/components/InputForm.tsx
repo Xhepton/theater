@@ -16,6 +16,7 @@ interface InputFormProps {
     inputFormElements: InputFormDataProps[]
     submitButtonText: string,
     onSubmit: (values: Object) => any
+    onDel?: (value: string) => any
 }
 
 export function InputForm(props: React.PropsWithChildren<InputFormProps>) {
