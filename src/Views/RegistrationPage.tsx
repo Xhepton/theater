@@ -36,7 +36,7 @@ async function onSubmit(values: any, navigate: NavigateFunction) {
         return
     }
     setCurrentUser(data, data.myToken)
-    navigate("/movies")
+    navigate("/login")
 }
 
 export function RegistrationPage() {

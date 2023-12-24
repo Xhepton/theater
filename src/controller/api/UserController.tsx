@@ -1,4 +1,5 @@
 import {deleteBody, getBody, putBody, postBody, postLoginBody, url} from "./constants"
+import {getCurrentUserToken} from "../session/session";
 
 export interface CreateUserDTO {
     firstName: string,

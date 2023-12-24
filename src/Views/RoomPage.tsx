@@ -1,6 +1,5 @@
 import { CustomerPageLayout } from "../components/CustomerPageComponents/CustomerPageLayout"
 import { ObjectEditor } from "../components/ObjectEditor"
-import { MovieController } from "../controller/api/MovieController"
 import React from "react";
 import {RoomController} from "../controller/api/RoomController";
 import {Button} from "react-bootstrap";
