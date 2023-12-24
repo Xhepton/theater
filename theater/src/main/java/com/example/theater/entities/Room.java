@@ -21,7 +21,6 @@ public class Room {
     @Column(nullable = false)
     private Integer rowCount;
 
-    @JsonManagedReference
     @OneToMany(mappedBy = "roomRoomName")
     private Set<Screening> roomRoomNameScreenings;
 

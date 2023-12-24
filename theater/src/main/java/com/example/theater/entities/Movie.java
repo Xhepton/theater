@@ -21,7 +21,6 @@ public class Movie {
     @Column(nullable = false)
     private Integer runtime;
 
-    @JsonManagedReference
     @OneToMany(mappedBy = "movieTitle")
     private Set<Screening> movieTitleScreenings;
 

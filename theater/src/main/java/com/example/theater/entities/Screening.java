@@ -23,12 +23,10 @@ public class Screening {
     @Column(nullable = false)
     private OffsetDateTime startTime;
 
-    @JsonManagedReference
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "movie_title_id", nullable = false)
     private Movie movieTitle;
 
-    @JsonManagedReference
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "room_room_name_id", nullable = false)
     private Room roomRoomName;
