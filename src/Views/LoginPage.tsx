@@ -2,8 +2,8 @@ import { Link, NavigateFunction, useNavigate } from "react-router-dom";
 import { InputForm } from "../components/InputForm";
 import { PageLayout } from "../components/PageLayout";
 import { GetUserDto, UserController } from "../controller/api/UserController";
-import { getCurrentUser, setCurrentUser } from "../controller/session/session";
-import React from "react";
+import { setCurrentUser } from "../controller/session/session";
+import React, {useState} from "react";
 
 async function onSubmit(values: any, navigate: NavigateFunction) {
     if (values.password == undefined || values.email == undefined) {
@@ -11,12 +11,16 @@ async function onSubmit(values: any, navigate: NavigateFunction) {
         return
     }
     var data: any = await UserController.signInUser(values)
+
+    console.log("LoginPageLog: " + data.myToken)
+
+
     if (data.error != undefined) {
         alert(data.message)
         return
     }
     if (data) {
-        setCurrentUser(data)
+        setCurrentUser(data, data.myToken)
         navigate("/movies")
         return
     }

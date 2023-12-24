@@ -4,7 +4,7 @@ import {Homepage} from "./Views/Homepage";
 import React from "react";
 import {LoginPage} from "./Views/LoginPage";
 import {RegistrationPage} from "./Views/RegistrationPage";
-import {CreateMovie, FetchMoviesForUser} from "./controller/fetchers/Fetchers";
+import {CreateMovie, FetchMovieData, FetchMoviesForUser} from "./controller/fetchers/Fetchers";
 
 function App() {
   return (
@@ -14,6 +14,7 @@ function App() {
             <Route path="/login" Component={LoginPage} />
             <Route path={"/register"} Component={RegistrationPage} />
             <Route path={"/movies"} Component={FetchMoviesForUser} />
+            <Route path={"/movie/:id"} Component={FetchMovieData} />
             <Route path={"/createMovie/"} Component={CreateMovie} />
         </Routes>
       </BrowserRouter>

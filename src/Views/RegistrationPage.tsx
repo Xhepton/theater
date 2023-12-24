@@ -35,7 +35,7 @@ async function onSubmit(values: any, navigate: NavigateFunction) {
         alert(data.message)
         return
     }
-    setCurrentUser(data)
+    setCurrentUser(data, data.myToken)
     navigate("/movies")
 }
 

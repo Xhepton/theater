@@ -29,14 +29,25 @@ export interface GetUserDto {
     user_id: number,
 }
 
+export interface GetUserTokenDto {
+    Token: string,
+}
+
 export class UserController {
 
-    static async signInUser(body: SignInUserDTO): Promise<GetUserDto> {
-        return await (await fetch(url + "/v1/auth/signin", {
+    static async signInUser(body: SignInUserDTO): Promise<{ user: GetUserDto, myToken: string }> {
+        const response = await fetch(url + "/v1/auth/signin", {
             ...postBody,
-            body: JSON.stringify(body)
-        })
-        ).json()
+            body: JSON.stringify(body),
+        });
+
+        if (!response.ok) {
+            throw new Error("Failed to sign in");
+        }
+
+        const result = await response.json();
+        console.log("UserControllerLog: " + result.token)
+        return { user: result.user, myToken: result.token };
     }
 
     // POST methods

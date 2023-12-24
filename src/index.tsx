@@ -1,7 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import './index.css'
-import AuthForm from "./Auth/AuthForm";
 // import MovieForm from "./Movie/MovieForm";
 // import RoomForm from "./Room/RoomForm";
 // import ScreeningForm from "./Screening/ScreeningForm";
